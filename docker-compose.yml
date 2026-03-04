@@ -1,0 +1,35 @@
+services:
+  generator-1:
+    build: .
+    environment:
+      SNOWFLAKE_DATACENTER_ID: 1
+      SNOWFLAKE_MACHINE_ID: 1
+    ports:
+      - "8081:8080"
+
+  generator-2:
+    build: .
+    environment:
+      SNOWFLAKE_DATACENTER_ID: 1
+      SNOWFLAKE_MACHINE_ID: 2
+    ports:
+      - "8082:8080"
+
+  generator-3:
+    build: .
+    environment:
+      SNOWFLAKE_DATACENTER_ID: 2
+      SNOWFLAKE_MACHINE_ID: 1
+    ports:
+      - "8083:8080"
+
+  test-client:
+    build: .
+    environment:
+      SPRING_PROFILES_ACTIVE: test-client
+    depends_on:
+      - generator-1
+      - generator-2
+      - generator-3
+    profiles:
+      - test
