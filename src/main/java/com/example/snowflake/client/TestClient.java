@@ -1,6 +1,8 @@
 package com.example.snowflake.client;
 
 import com.example.snowflake.generator.SnowflakeIdGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,8 @@ import java.util.Set;
 @Component
 @Profile("test-client")
 public class TestClient implements CommandLineRunner {
+
+    private static final Logger log = LoggerFactory.getLogger(TestClient.class);
 
     private static final int IDS_PER_SERVICE = 100;
     private static final int MAX_RETRIES = 30;
@@ -34,7 +38,7 @@ public class TestClient implements CommandLineRunner {
         int totalExpected = services.size() * IDS_PER_SERVICE;
 
         for (ServiceConfig service : services) {
-            System.out.println("Testing " + service.name + " at " + service.url);
+            log.info("Testing {} at {}", service.name, service.url);
 
             RestClient client = RestClient.builder()
                     .baseUrl(service.url)
@@ -65,25 +69,24 @@ public class TestClient implements CommandLineRunner {
                 allIds.add(id);
             }
 
-            System.out.println("  " + service.name + ": " + ids.size() + " IDs validated OK");
+            log.info("{}: {} IDs validated OK", service.name, ids.size());
         }
 
         assert allIds.size() == totalExpected :
                 String.format("Expected %d unique IDs across all services, got %d",
                         totalExpected, allIds.size());
 
-        System.out.println("\nAll tests passed!");
-        System.out.println("Total unique IDs: " + allIds.size() + "/" + totalExpected);
+        log.info("All tests passed! Total unique IDs: {}/{}", allIds.size(), totalExpected);
     }
 
     private void waitForService(RestClient client, String serviceName) throws InterruptedException {
         for (int i = 0; i < MAX_RETRIES; i++) {
             try {
                 client.get().uri("/api/id").retrieve().body(Map.class);
-                System.out.println("  " + serviceName + " is ready");
+                log.info("{} is ready", serviceName);
                 return;
             } catch (Exception e) {
-                System.out.println("  Waiting for " + serviceName + "... (" + (i + 1) + "/" + MAX_RETRIES + ")");
+                log.info("Waiting for {}... ({}/{})", serviceName, i + 1, MAX_RETRIES);
                 Thread.sleep(RETRY_DELAY_MS);
             }
         }
