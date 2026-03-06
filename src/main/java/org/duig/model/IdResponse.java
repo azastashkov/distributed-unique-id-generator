@@ -1,4 +1,4 @@
-package com.example.snowflake.model;
+package org.duig.model;
 
 public record IdResponse(
         long id,

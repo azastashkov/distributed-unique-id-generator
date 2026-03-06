@@ -1,7 +1,7 @@
-package com.example.snowflake.controller;
+package org.duig.controller;
 
-import com.example.snowflake.generator.SnowflakeIdGenerator;
-import com.example.snowflake.model.IdResponse;
+import org.duig.generator.DuigIdGenerator;
+import org.duig.model.IdResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,9 +17,9 @@ public class IdController {
     private static final int DEFAULT_COUNT = 10;
     private static final int MAX_COUNT = 1000;
 
-    private final SnowflakeIdGenerator generator;
+    private final DuigIdGenerator generator;
 
-    public IdController(SnowflakeIdGenerator generator) {
+    public IdController(DuigIdGenerator generator) {
         this.generator = generator;
     }
 
@@ -41,10 +41,10 @@ public class IdController {
         return new IdResponse(
                 id,
                 Long.toHexString(id),
-                SnowflakeIdGenerator.extractTimestamp(id),
-                SnowflakeIdGenerator.extractDatacenterId(id),
-                SnowflakeIdGenerator.extractMachineId(id),
-                SnowflakeIdGenerator.extractSequence(id)
+                DuigIdGenerator.extractTimestamp(id),
+                DuigIdGenerator.extractDatacenterId(id),
+                DuigIdGenerator.extractMachineId(id),
+                DuigIdGenerator.extractSequence(id)
         );
     }
 }

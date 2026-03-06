@@ -1,4 +1,4 @@
-package com.example.snowflake.generator;
+package org.duig.generator;
 
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +14,11 @@ import java.util.function.LongSupplier;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-class SnowflakeIdGeneratorTest {
+class DuigIdGeneratorTest {
 
     @Test
     void generatedIdsShouldBePositive() {
-        var generator = new SnowflakeIdGenerator(1, 1, System::currentTimeMillis);
+        var generator = new DuigIdGenerator(1, 1, System::currentTimeMillis);
         for (int i = 0; i < 100; i++) {
             assertThat(generator.nextId()).isPositive();
         }
@@ -26,7 +26,7 @@ class SnowflakeIdGeneratorTest {
 
     @Test
     void shouldGenerateUniqueIds() {
-        var generator = new SnowflakeIdGenerator(1, 1, System::currentTimeMillis);
+        var generator = new DuigIdGenerator(1, 1, System::currentTimeMillis);
         Set<Long> ids = new HashSet<>();
         int count = 10_000;
         for (int i = 0; i < count; i++) {
@@ -37,41 +37,41 @@ class SnowflakeIdGeneratorTest {
 
     @Test
     void shouldEmbedCorrectDatacenterAndMachineIds() {
-        var generator = new SnowflakeIdGenerator(17, 25, System::currentTimeMillis);
+        var generator = new DuigIdGenerator(17, 25, System::currentTimeMillis);
         long id = generator.nextId();
-        assertThat(SnowflakeIdGenerator.extractDatacenterId(id)).isEqualTo(17);
-        assertThat(SnowflakeIdGenerator.extractMachineId(id)).isEqualTo(25);
+        assertThat(DuigIdGenerator.extractDatacenterId(id)).isEqualTo(17);
+        assertThat(DuigIdGenerator.extractMachineId(id)).isEqualTo(25);
     }
 
     @Test
     void timestampShouldBeReasonable() {
         long before = System.currentTimeMillis();
-        var generator = new SnowflakeIdGenerator(1, 1, System::currentTimeMillis);
+        var generator = new DuigIdGenerator(1, 1, System::currentTimeMillis);
         long id = generator.nextId();
         long after = System.currentTimeMillis();
 
-        long timestamp = SnowflakeIdGenerator.extractTimestamp(id);
+        long timestamp = DuigIdGenerator.extractTimestamp(id);
         assertThat(timestamp).isBetween(before, after);
     }
 
     @Test
     void sequenceShouldIncrementWithinSameMillisecond() {
         long fixedTime = System.currentTimeMillis();
-        var generator = new SnowflakeIdGenerator(1, 1, () -> fixedTime);
+        var generator = new DuigIdGenerator(1, 1, () -> fixedTime);
 
         long id1 = generator.nextId();
         long id2 = generator.nextId();
         long id3 = generator.nextId();
 
-        assertThat(SnowflakeIdGenerator.extractSequence(id1)).isEqualTo(0);
-        assertThat(SnowflakeIdGenerator.extractSequence(id2)).isEqualTo(1);
-        assertThat(SnowflakeIdGenerator.extractSequence(id3)).isEqualTo(2);
+        assertThat(DuigIdGenerator.extractSequence(id1)).isEqualTo(0);
+        assertThat(DuigIdGenerator.extractSequence(id2)).isEqualTo(1);
+        assertThat(DuigIdGenerator.extractSequence(id3)).isEqualTo(2);
     }
 
     @Test
     void sequenceShouldResetOnNewMillisecond() {
         long[] time = {1000 + 1288834974657L};
-        var generator = new SnowflakeIdGenerator(1, 1, () -> time[0]);
+        var generator = new DuigIdGenerator(1, 1, () -> time[0]);
 
         generator.nextId(); // seq 0 at time[0]
         generator.nextId(); // seq 1 at time[0]
@@ -79,13 +79,13 @@ class SnowflakeIdGeneratorTest {
         time[0]++; // advance to next ms
 
         long id = generator.nextId();
-        assertThat(SnowflakeIdGenerator.extractSequence(id)).isEqualTo(0);
+        assertThat(DuigIdGenerator.extractSequence(id)).isEqualTo(0);
     }
 
     @Test
     void shouldThrowOnClockRollback() {
         long[] time = {System.currentTimeMillis()};
-        var generator = new SnowflakeIdGenerator(1, 1, () -> time[0]);
+        var generator = new DuigIdGenerator(1, 1, () -> time[0]);
 
         generator.nextId();
         time[0] -= 10; // simulate clock going backwards
@@ -98,15 +98,15 @@ class SnowflakeIdGeneratorTest {
     @Test
     void shouldVerifyBitLayout() {
         long fixedTime = 1288834974657L + 1000L; // epoch + 1000ms
-        var generator = new SnowflakeIdGenerator(0b10101, 0b01010, () -> fixedTime);
+        var generator = new DuigIdGenerator(0b10101, 0b01010, () -> fixedTime);
 
         long id = generator.nextId();
 
         // timestamp bits: 1000 in upper bits
-        assertThat(SnowflakeIdGenerator.extractTimestamp(id)).isEqualTo(fixedTime);
-        assertThat(SnowflakeIdGenerator.extractDatacenterId(id)).isEqualTo(0b10101);
-        assertThat(SnowflakeIdGenerator.extractMachineId(id)).isEqualTo(0b01010);
-        assertThat(SnowflakeIdGenerator.extractSequence(id)).isEqualTo(0);
+        assertThat(DuigIdGenerator.extractTimestamp(id)).isEqualTo(fixedTime);
+        assertThat(DuigIdGenerator.extractDatacenterId(id)).isEqualTo(0b10101);
+        assertThat(DuigIdGenerator.extractMachineId(id)).isEqualTo(0b01010);
+        assertThat(DuigIdGenerator.extractSequence(id)).isEqualTo(0);
 
         // Verify by manual bit construction
         long expected = (1000L << 22) | (0b10101L << 17) | (0b01010L << 12) | 0L;
@@ -115,7 +115,7 @@ class SnowflakeIdGeneratorTest {
 
     @Test
     void shouldHandleConcurrentAccess() throws InterruptedException {
-        var generator = new SnowflakeIdGenerator(1, 1, System::currentTimeMillis);
+        var generator = new DuigIdGenerator(1, 1, System::currentTimeMillis);
         int threadCount = 10;
         int idsPerThread = 1000;
         Set<Long> allIds = ConcurrentHashMap.newKeySet();
@@ -146,35 +146,35 @@ class SnowflakeIdGeneratorTest {
 
     @Test
     void shouldRejectInvalidDatacenterId() {
-        assertThatThrownBy(() -> new SnowflakeIdGenerator(-1, 0, System::currentTimeMillis))
+        assertThatThrownBy(() -> new DuigIdGenerator(-1, 0, System::currentTimeMillis))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new SnowflakeIdGenerator(32, 0, System::currentTimeMillis))
+        assertThatThrownBy(() -> new DuigIdGenerator(32, 0, System::currentTimeMillis))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void shouldRejectInvalidMachineId() {
-        assertThatThrownBy(() -> new SnowflakeIdGenerator(0, -1, System::currentTimeMillis))
+        assertThatThrownBy(() -> new DuigIdGenerator(0, -1, System::currentTimeMillis))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new SnowflakeIdGenerator(0, 32, System::currentTimeMillis))
+        assertThatThrownBy(() -> new DuigIdGenerator(0, 32, System::currentTimeMillis))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void shouldAcceptBoundaryValues() {
-        var gen1 = new SnowflakeIdGenerator(0, 0, System::currentTimeMillis);
+        var gen1 = new DuigIdGenerator(0, 0, System::currentTimeMillis);
         assertThat(gen1.nextId()).isPositive();
 
-        var gen2 = new SnowflakeIdGenerator(31, 31, System::currentTimeMillis);
+        var gen2 = new DuigIdGenerator(31, 31, System::currentTimeMillis);
         long id = gen2.nextId();
-        assertThat(SnowflakeIdGenerator.extractDatacenterId(id)).isEqualTo(31);
-        assertThat(SnowflakeIdGenerator.extractMachineId(id)).isEqualTo(31);
+        assertThat(DuigIdGenerator.extractDatacenterId(id)).isEqualTo(31);
+        assertThat(DuigIdGenerator.extractMachineId(id)).isEqualTo(31);
     }
 
     @Test
     void shouldHandleMaxSequencePerMillisecond() {
         long[] time = {System.currentTimeMillis()};
-        var generator = new SnowflakeIdGenerator(1, 1, () -> time[0]);
+        var generator = new DuigIdGenerator(1, 1, () -> time[0]);
 
         Set<Long> ids = new HashSet<>();
         // Generate 4096 IDs (max sequence per ms)
@@ -186,6 +186,6 @@ class SnowflakeIdGeneratorTest {
         // The next one should block waiting for next ms; advance the clock
         time[0]++;
         long nextId = generator.nextId();
-        assertThat(SnowflakeIdGenerator.extractSequence(nextId)).isEqualTo(0);
+        assertThat(DuigIdGenerator.extractSequence(nextId)).isEqualTo(0);
     }
 }

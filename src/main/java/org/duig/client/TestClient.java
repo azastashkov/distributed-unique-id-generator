@@ -1,6 +1,6 @@
-package com.example.snowflake.client;
+package org.duig.client;
 
-import com.example.snowflake.generator.SnowflakeIdGenerator;
+import org.duig.generator.DuigIdGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -51,9 +51,9 @@ public class TestClient implements CommandLineRunner {
             for (long id : ids) {
                 assert id > 0 : "ID must be positive, got: " + id;
 
-                long datacenterId = SnowflakeIdGenerator.extractDatacenterId(id);
-                long machineId = SnowflakeIdGenerator.extractMachineId(id);
-                long timestamp = SnowflakeIdGenerator.extractTimestamp(id);
+                long datacenterId = DuigIdGenerator.extractDatacenterId(id);
+                long machineId = DuigIdGenerator.extractMachineId(id);
+                long timestamp = DuigIdGenerator.extractTimestamp(id);
 
                 assert datacenterId == service.expectedDatacenterId :
                         String.format("Expected datacenter %d but got %d for service %s",

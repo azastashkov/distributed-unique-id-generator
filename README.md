@@ -1,6 +1,6 @@
 # Distributed Unique ID Generator
 
-A Twitter Snowflake-style distributed unique ID generator built with Spring Boot.
+A DUIG - distributed unique ID generator built with Spring Boot.
 
 ## ID Format (64 bits)
 
@@ -8,7 +8,7 @@ A Twitter Snowflake-style distributed unique ID generator built with Spring Boot
 | 1 bit (sign=0) | 41 bits (timestamp) | 5 bits (datacenter) | 5 bits (machine) | 12 bits (sequence) |
 ```
 
-- **Epoch**: 1288834974657 (Twitter Snowflake default)
+- **Epoch**: 1288834974657 (DUIG default)
 - **Max datacenters**: 32
 - **Max machines per datacenter**: 32
 - **Max sequence per millisecond**: 4096
@@ -32,7 +32,7 @@ A Twitter Snowflake-style distributed unique ID generator built with Spring Boot
 ./gradlew bootRun
 
 # Custom configuration
-SNOWFLAKE_DATACENTER_ID=1 SNOWFLAKE_MACHINE_ID=1 ./gradlew bootRun
+DUIG_DATACENTER_ID=1 DUIG_MACHINE_ID=1 ./gradlew bootRun
 ```
 
 ## API Endpoints
@@ -87,7 +87,7 @@ docker compose --profile test up test-client
 
 ## Architecture
 
-Each generator instance is configured with a unique `(datacenterId, machineId)` pair. The Snowflake algorithm guarantees global uniqueness without coordination between instances:
+Each generator instance is configured with a unique `(datacenterId, machineId)` pair. The DUIG algorithm guarantees global uniqueness without coordination between instances:
 
 - Different instances produce different IDs because their datacenter/machine bits differ
 - Within a single instance, the sequence counter ensures uniqueness within the same millisecond

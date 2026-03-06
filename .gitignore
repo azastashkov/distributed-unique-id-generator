@@ -1,4 +1,5 @@
 build/
+target/
 !**/src/main/**/build/
 !**/src/test/**/build/
 .gradle/

@@ -1,6 +1,6 @@
-package com.example.snowflake.generator;
+package org.duig.generator;
 
-import com.example.snowflake.config.SnowflakeProperties;
+import org.duig.config.DuigProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 import java.util.function.LongSupplier;
 
 @Component
-@EnableConfigurationProperties(SnowflakeProperties.class)
-public class SnowflakeIdGenerator {
+@EnableConfigurationProperties(DuigProperties.class)
+public class DuigIdGenerator {
 
     private static final long EPOCH = 1288834974657L;
 
@@ -33,11 +33,11 @@ public class SnowflakeIdGenerator {
     private long sequence = 0L;
 
     @Autowired
-    public SnowflakeIdGenerator(SnowflakeProperties properties) {
+    public DuigIdGenerator(DuigProperties properties) {
         this(properties.datacenterId(), properties.machineId(), System::currentTimeMillis);
     }
 
-    SnowflakeIdGenerator(long datacenterId, long machineId, LongSupplier clock) {
+    DuigIdGenerator(long datacenterId, long machineId, LongSupplier clock) {
         if (datacenterId < 0 || datacenterId > MAX_DATACENTER_ID) {
             throw new IllegalArgumentException(
                     "Datacenter ID must be between 0 and " + MAX_DATACENTER_ID);
