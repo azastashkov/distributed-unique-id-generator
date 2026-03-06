@@ -1,173 +1,141 @@
-<mxfile host="app.diagrams.net" modified="2026-03-06T00:00:00.000Z" agent="Claude" version="24.0.0" type="device">
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.5.2 Chrome/142.0.7444.265 Electron/39.6.1 Safari/537.36" version="29.5.2">
   <diagram id="components" name="Components">
-    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+    <mxGraphModel dx="1722" dy="933" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-
-        <!-- Client -->
-        <mxCell id="client" value="&lt;b&gt;HTTP Client&lt;/b&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="80" y="300" width="40" height="60" as="geometry" />
+        <mxCell id="client" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;b&gt;HTTP Client&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="40" x="100" y="350" as="geometry" />
         </mxCell>
-
-        <!-- Spring Boot Application boundary -->
-        <mxCell id="app_boundary" value="&lt;b&gt;DUIG Service&lt;/b&gt;&amp;nbsp;(Spring Boot)" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=40;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;rounded=1;arcSize=8;" vertex="1" parent="1">
-          <mxGeometry x="240" y="120" width="560" height="480" as="geometry" />
+        <mxCell id="app_boundary" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=40;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;rounded=1;arcSize=8;" value="&lt;b&gt;Distributed Unique Id Generator Service&lt;/b&gt;&amp;nbsp;(Spring Boot)" vertex="1">
+          <mxGeometry height="480" width="560" x="240" y="120" as="geometry" />
         </mxCell>
-
-        <!-- Controller component -->
-        <mxCell id="controller" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;IdController" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="310" y="200" width="180" height="60" as="geometry" />
+        <mxCell id="controller" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;IdController" vertex="1">
+          <mxGeometry height="60" width="180" x="310" y="300" as="geometry" />
         </mxCell>
-
-        <!-- REST API interface -->
-        <mxCell id="rest_api" value="&lt;b&gt;&amp;laquo;interface&amp;raquo;&lt;/b&gt;&lt;br&gt;REST API&lt;br&gt;&lt;i&gt;/api/id&lt;br&gt;/api/id/bulk&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=11;dashed=1;" vertex="1" parent="1">
-          <mxGeometry x="310" y="300" width="180" height="70" as="geometry" />
+        <mxCell id="rest_api" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;fontSize=11;dashed=1;" value="&lt;b&gt;&amp;laquo;interface&amp;raquo;&lt;/b&gt;&lt;br&gt;REST API&lt;br&gt;&lt;i&gt;/api/id&lt;br&gt;/api/id/bulk&lt;/i&gt;" vertex="1">
+          <mxGeometry height="70" width="180" x="310" y="190" as="geometry" />
         </mxCell>
-
-        <!-- Generator component -->
-        <mxCell id="generator" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;DuigIdGenerator" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="560" y="200" width="180" height="60" as="geometry" />
+        <mxCell id="generator" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;DuigIdGenerator" vertex="1">
+          <mxGeometry height="60" width="180" x="560" y="200" as="geometry" />
         </mxCell>
-
-        <!-- Model component -->
-        <mxCell id="model" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;IdResponse" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="310" y="420" width="180" height="60" as="geometry" />
+        <mxCell id="model" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;IdResponse" vertex="1">
+          <mxGeometry height="60" width="180" x="310" y="420" as="geometry" />
         </mxCell>
-
-        <!-- Config component -->
-        <mxCell id="config" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;DuigProperties" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="560" y="420" width="180" height="60" as="geometry" />
+        <mxCell id="config" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;DuigProperties" vertex="1">
+          <mxGeometry height="60" width="180" x="560" y="300" as="geometry" />
         </mxCell>
-
-        <!-- Application entry point -->
-        <mxCell id="duig_app" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;DuigApplication" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
-          <mxGeometry x="560" y="310" width="180" height="60" as="geometry" />
+        <mxCell id="duig_app" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;DuigApplication" vertex="1">
+          <mxGeometry height="60" width="180" x="560" y="420" as="geometry" />
         </mxCell>
-
-        <!-- Environment config -->
-        <mxCell id="env" value="&lt;b&gt;Environment&lt;/b&gt;&lt;br&gt;&lt;i&gt;DUIG_DATACENTER_ID&lt;br&gt;DUIG_MACHINE_ID&lt;/i&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="920" y="400" width="180" height="80" as="geometry" />
+        <mxCell id="env" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="&lt;b&gt;Environment&lt;/b&gt;&lt;br&gt;&lt;i&gt;DUIG_DATACENTER_ID&lt;br&gt;DUIG_MACHINE_ID&lt;/i&gt;" vertex="1">
+          <mxGeometry height="80" width="180" x="1000" y="560" as="geometry" />
         </mxCell>
-
-        <!-- Docker Compose boundary -->
-        <mxCell id="docker_boundary" value="&lt;b&gt;Docker Compose&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=10;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;dashed=1;dashPattern=5 5;" vertex="1" parent="1">
-          <mxGeometry x="920" y="100" width="580" height="270" as="geometry" />
+        <mxCell id="docker_boundary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;align=left;verticalAlign=top;spacingTop=5;spacingLeft=10;fillColor=#f5f5f5;strokeColor=#666666;fontSize=14;dashed=1;dashPattern=5 5;" value="&lt;b&gt;Docker Compose&lt;/b&gt;" vertex="1">
+          <mxGeometry height="270" width="580" x="920" y="120" as="geometry" />
         </mxCell>
-
-        <!-- Instance 1 -->
-        <mxCell id="inst1" value="&lt;b&gt;generator-1&lt;/b&gt;&lt;br&gt;DC=1, M=1&lt;br&gt;:8081" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="940" y="160" width="150" height="60" as="geometry" />
+        <mxCell id="inst1" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;generator-1&lt;/b&gt;&lt;br&gt;DC=1, M=1&lt;br&gt;:8081" vertex="1">
+          <mxGeometry height="60" width="150" x="940" y="180" as="geometry" />
         </mxCell>
-
-        <!-- Instance 2 -->
-        <mxCell id="inst2" value="&lt;b&gt;generator-2&lt;/b&gt;&lt;br&gt;DC=1, M=2&lt;br&gt;:8082" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="1130" y="160" width="150" height="60" as="geometry" />
+        <mxCell id="inst2" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;generator-2&lt;/b&gt;&lt;br&gt;DC=1, M=2&lt;br&gt;:8082" vertex="1">
+          <mxGeometry height="60" width="150" x="1130" y="180" as="geometry" />
         </mxCell>
-
-        <!-- Instance 3 -->
-        <mxCell id="inst3" value="&lt;b&gt;generator-3&lt;/b&gt;&lt;br&gt;DC=2, M=1&lt;br&gt;:8083" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="1320" y="160" width="150" height="60" as="geometry" />
+        <mxCell id="inst3" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="&lt;b&gt;generator-3&lt;/b&gt;&lt;br&gt;DC=2, M=1&lt;br&gt;:8083" vertex="1">
+          <mxGeometry height="60" width="150" x="1320" y="180" as="geometry" />
         </mxCell>
-
-        <!-- Test Client -->
-        <mxCell id="test_client" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;TestClient" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="1130" y="280" width="150" height="60" as="geometry" />
+        <mxCell id="test_client" parent="1" style="shape=mxgraph.uml25.component;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="&lt;b&gt;&amp;laquo;component&amp;raquo;&lt;/b&gt;&lt;br&gt;TestClient" vertex="1">
+          <mxGeometry height="60" width="150" x="1130" y="300" as="geometry" />
         </mxCell>
-
-        <!-- ID format note -->
-        <mxCell id="id_format" value="&lt;b&gt;ID Format (64 bits)&lt;/b&gt;&lt;br&gt;1 sign | 41 timestamp | 5 DC | 5 machine | 12 sequence" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="920" y="520" width="340" height="60" as="geometry" />
+        <mxCell id="id_format" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="&lt;b&gt;ID Format (64 bits)&lt;/b&gt;&lt;br&gt;1 sign | 41 timestamp | 5 DC | 5 machine | 12 sequence" vertex="1">
+          <mxGeometry height="60" width="340" x="1070" y="430" as="geometry" />
         </mxCell>
-
-        <!-- Edges -->
-
-        <!-- Client to REST API -->
-        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#82b366;" edge="1" source="client" target="rest_api" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e1_label" value="HTTP GET" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e1">
-          <mxGeometry x="-0.2" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- REST API to Controller -->
-        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#d6b656;" edge="1" source="rest_api" target="controller" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e2_label" value="exposes" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" vertex="1" connectable="0" parent="e2">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="20" as="offset" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- Controller to Generator -->
-        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#d6b656;" edge="1" source="controller" target="generator" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e3_label" value="nextId()" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e3">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- Controller to Model -->
-        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#d6b656;" edge="1" source="controller" target="model" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e4_label" value="creates" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" vertex="1" connectable="0" parent="e4">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- Generator to Config -->
-        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#d6b656;" edge="1" source="generator" target="config" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e5_label" value="reads config" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" vertex="1" connectable="0" parent="e5">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- Config to Env -->
-        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#b85450;" edge="1" source="config" target="env" parent="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="e6_label" value="binds" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" vertex="1" connectable="0" parent="e6">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-
-        <!-- Generator to ID Format note -->
-        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#b85450;" edge="1" source="generator" target="id_format" parent="1">
+        <mxCell id="e1" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#82b366;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="rest_api">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="850" y="230" />
-              <mxPoint x="850" y="550" />
+              <mxPoint x="120" y="225" />
+            </Array>
+            <mxPoint x="120" y="335" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e1_label" connectable="0" parent="e1" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" value="HTTP GET" vertex="1">
+          <mxGeometry relative="1" x="-0.2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="controller" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#d6b656;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="rest_api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2_label" connectable="0" parent="e2" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" value="exposes" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="27" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="controller" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#d6b656;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.996;exitY=0.574;exitDx=0;exitDy=0;exitPerimeter=0;" target="generator">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="334" />
+              <mxPoint x="520" y="230" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="e7_label" value="produces" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" vertex="1" connectable="0" parent="e7">
+        <mxCell id="e3_label" connectable="0" parent="e3" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" value="nextId()" vertex="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-
-        <!-- Test Client to instances -->
-        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;strokeColor=#82b366;" edge="1" source="test_client" target="inst1" parent="1">
+        <mxCell id="e4" edge="1" parent="1" source="controller" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#d6b656;" target="model">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;strokeColor=#82b366;" edge="1" source="test_client" target="inst2" parent="1">
+        <mxCell id="e4_label" connectable="0" parent="e4" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" value="creates" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="24" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="generator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#d6b656;" target="config">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;strokeColor=#82b366;" edge="1" source="test_client" target="inst3" parent="1">
+        <mxCell id="e5_label" connectable="0" parent="e5" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;" value="reads config" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="35" y="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="config" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#b85450;entryX=0;entryY=0;entryDx=82.5;entryDy=0;entryPerimeter=0;" target="env">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="830" y="450" />
+              <mxPoint x="830" y="510" />
+              <mxPoint x="1083" y="510" />
+              <mxPoint x="1083" y="530" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6_label" connectable="0" parent="e6" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" value="binds" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="generator" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;dashed=1;strokeColor=#b85450;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="id_format">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="230" />
+              <mxPoint x="880" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7_label" connectable="0" parent="e7" style="edgeLabel;html=1;align=center;verticalAlign=middle;fontSize=10;fontStyle=2;" value="produces" vertex="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="1" source="test_client" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;strokeColor=#82b366;" target="inst1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-
+        <mxCell id="e9" edge="1" parent="1" source="test_client" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;strokeColor=#82b366;" target="inst2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="1" source="test_client" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=1.5;strokeColor=#82b366;" target="inst3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
